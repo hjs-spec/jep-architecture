@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="380" viewBox="0 0 1120 380" role="img" aria-labelledby="title desc">
+  <title id="title">Delegation Lineage Diagram</title>
+  <desc id="desc">Static SVG preview generated from the repository architecture diagram definitions.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#394150" />
+    </marker>
+    <style>
+      .title { font: 700 22px Arial, sans-serif; fill: #172033; }
+      .box { rx: 12; ry: 12; stroke-width: 1.7; }
+      .protocol { fill: #e8f1ff; stroke: #2f6fed; }
+      .runtime { fill: #edf8f0; stroke: #2c8a4a; }
+      .archive { fill: #fff7e6; stroke: #d99000; }
+      .external { fill: #fff0f0; stroke: #d64545; }
+      .label { font: 700 15px Arial, sans-serif; fill: #172033; }
+      .small { font: 12px Arial, sans-serif; fill: #394150; }
+      .edge { stroke: #394150; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 6 5; }
+    </style>
+  </defs>
+  <text x="560" y="38" text-anchor="middle" class="title">Delegation Lineage: Human → Agent → Sub-Agent → Tool → External System</text>
+  <rect x="45" y="125" width="165" height="82" class="box protocol" />
+  <text x="127.5" y="153" text-anchor="middle" class="label">Human</text>
+  <text x="127.5" y="171" text-anchor="middle" class="small">intent + approval</text>
+  <path d="M 210 160 L 255 160" class="edge" />
+  <text x="232.5" y="152.0" text-anchor="middle" class="small">delegates</text>
+  <rect x="260" y="125" width="165" height="82" class="box protocol" />
+  <text x="342.5" y="153" text-anchor="middle" class="label">Agent</text>
+  <text x="342.5" y="171" text-anchor="middle" class="small">plans work</text>
+  <path d="M 425 160 L 470 160" class="edge" />
+  <text x="447.5" y="152.0" text-anchor="middle" class="small">delegates</text>
+  <path d="M 260 190 L 215 190" class="edge" />
+  <text x="237.5" y="182.0" text-anchor="middle" class="small">evidence</text>
+  <rect x="475" y="125" width="165" height="82" class="box protocol" />
+  <text x="557.5" y="153" text-anchor="middle" class="label">Sub-Agent</text>
+  <text x="557.5" y="171" text-anchor="middle" class="small">bounded task</text>
+  <path d="M 640 160 L 685 160" class="edge" />
+  <text x="662.5" y="152.0" text-anchor="middle" class="small">delegates</text>
+  <path d="M 475 190 L 430 190" class="edge" />
+  <text x="452.5" y="182.0" text-anchor="middle" class="small">evidence</text>
+  <rect x="690" y="125" width="165" height="82" class="box runtime" />
+  <text x="772.5" y="153" text-anchor="middle" class="label">Tool</text>
+  <text x="772.5" y="171" text-anchor="middle" class="small">typed capability</text>
+  <path d="M 855 160 L 900 160" class="edge" />
+  <text x="877.5" y="152.0" text-anchor="middle" class="small">calls</text>
+  <path d="M 690 190 L 645 190" class="edge" />
+  <text x="667.5" y="182.0" text-anchor="middle" class="small">evidence</text>
+  <rect x="905" y="125" width="165" height="82" class="box external" />
+  <text x="987.5" y="153" text-anchor="middle" class="label">External System</text>
+  <text x="987.5" y="171" text-anchor="middle" class="small">third-party side effect</text>
+  <path d="M 905 190 L 860 190" class="edge" />
+  <text x="882.5" y="182.0" text-anchor="middle" class="small">evidence</text>
+</svg>

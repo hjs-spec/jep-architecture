@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="620" viewBox="0 0 980 620" role="img" aria-labelledby="title desc">
+  <title id="title">Protocol Stack Diagram</title>
+  <desc id="desc">Static SVG preview generated from the repository architecture diagram definitions.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#394150" />
+    </marker>
+    <style>
+      .title { font: 700 22px Arial, sans-serif; fill: #172033; }
+      .box { rx: 12; ry: 12; stroke-width: 1.7; }
+      .protocol { fill: #e8f1ff; stroke: #2f6fed; }
+      .runtime { fill: #edf8f0; stroke: #2c8a4a; }
+      .archive { fill: #fff7e6; stroke: #d99000; }
+      .external { fill: #fff0f0; stroke: #d64545; }
+      .label { font: 700 15px Arial, sans-serif; fill: #172033; }
+      .small { font: 12px Arial, sans-serif; fill: #394150; }
+      .edge { stroke: #394150; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 6 5; }
+    </style>
+  </defs>
+  <text x="490" y="38" text-anchor="middle" class="title">Protocol Stack: JEP → HJS → JAC → Runtime → SDKs → Integrations</text>
+  <rect x="350" y="75" width="280" height="72" class="box protocol" />
+  <text x="490.0" y="103" text-anchor="middle" class="label">JEP</text>
+  <text x="490.0" y="121" text-anchor="middle" class="small">Job Envelope Protocol</text>
+  <text x="490.0" y="139" text-anchor="middle" class="small">action envelope, actor metadata</text>
+  <path d="M 490.0 147 L 490.0 163" class="edge" />
+  <text x="490.0" y="147.0" text-anchor="middle" class="small">depends on</text>
+  <rect x="350" y="163" width="280" height="72" class="box protocol" />
+  <text x="490.0" y="191" text-anchor="middle" class="label">HJS</text>
+  <text x="490.0" y="209" text-anchor="middle" class="small">Hardened Job State</text>
+  <text x="490.0" y="227" text-anchor="middle" class="small">signed state, policy claims</text>
+  <path d="M 490.0 235 L 490.0 251" class="edge" />
+  <text x="490.0" y="235.0" text-anchor="middle" class="small">depends on</text>
+  <rect x="350" y="251" width="280" height="72" class="box protocol" />
+  <text x="490.0" y="279" text-anchor="middle" class="label">JAC</text>
+  <text x="490.0" y="297" text-anchor="middle" class="small">Job Accountability Canon</text>
+  <text x="490.0" y="315" text-anchor="middle" class="small">canonical archive, replay contract</text>
+  <path d="M 490.0 323 L 490.0 339" class="edge" />
+  <text x="490.0" y="323.0" text-anchor="middle" class="small">depends on</text>
+  <rect x="350" y="339" width="280" height="72" class="box runtime" />
+  <text x="490.0" y="367" text-anchor="middle" class="label">Runtime</text>
+  <text x="490.0" y="385" text-anchor="middle" class="small">agent loop, middleware hooks</text>
+  <text x="490.0" y="403" text-anchor="middle" class="small">tool dispatcher</text>
+  <path d="M 490.0 411 L 490.0 427" class="edge" />
+  <text x="490.0" y="411.0" text-anchor="middle" class="small">depends on</text>
+  <rect x="350" y="427" width="280" height="72" class="box archive" />
+  <text x="490.0" y="455" text-anchor="middle" class="label">SDKs</text>
+  <text x="490.0" y="473" text-anchor="middle" class="small">typed builders, validators</text>
+  <text x="490.0" y="491" text-anchor="middle" class="small">replay clients</text>
+  <path d="M 490.0 499 L 490.0 515" class="edge" />
+  <text x="490.0" y="499.0" text-anchor="middle" class="small">depends on</text>
+  <rect x="350" y="515" width="280" height="72" class="box archive" />
+  <text x="490.0" y="543" text-anchor="middle" class="label">Integrations</text>
+  <text x="490.0" y="561" text-anchor="middle" class="small">tools, APIs</text>
+  <text x="490.0" y="579" text-anchor="middle" class="small">workflow systems</text>
+</svg>
