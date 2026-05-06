@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="670" viewBox="0 0 1060 670" role="img" aria-labelledby="title desc">
+  <title id="title">Trust Boundary Diagram</title>
+  <desc id="desc">Static SVG preview generated from the repository architecture diagram definitions.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#394150" />
+    </marker>
+    <style>
+      .title { font: 700 22px Arial, sans-serif; fill: #172033; }
+      .box { rx: 12; ry: 12; stroke-width: 1.7; }
+      .protocol { fill: #e8f1ff; stroke: #2f6fed; }
+      .runtime { fill: #edf8f0; stroke: #2c8a4a; }
+      .archive { fill: #fff7e6; stroke: #d99000; }
+      .external { fill: #fff0f0; stroke: #d64545; }
+      .label { font: 700 15px Arial, sans-serif; fill: #172033; }
+      .small { font: 12px Arial, sans-serif; fill: #394150; }
+      .edge { stroke: #394150; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 6 5; }
+    </style>
+  </defs>
+  <text x="530" y="38" text-anchor="middle" class="title">Trust Boundary: Human / Agent / Organization / Tool / External System</text>
+  <rect x="35" y="75" width="210" height="140" class="box protocol" opacity="0.45" />
+  <text x="47" y="99" class="label">Human trust boundary</text>
+  <rect x="300" y="75" width="210" height="140" class="box runtime" opacity="0.45" />
+  <text x="312" y="99" class="label">Agent trust boundary</text>
+  <rect x="575" y="75" width="430" height="215" class="box archive" opacity="0.45" />
+  <text x="587" y="99" class="label">Organization trust boundary</text>
+  <rect x="300" y="360" width="210" height="140" class="box runtime" opacity="0.45" />
+  <text x="312" y="384" class="label">Tool trust boundary</text>
+  <rect x="575" y="360" width="430" height="140" class="box external" opacity="0.45" />
+  <text x="587" y="384" class="label">External system trust boundary</text>
+  <rect x="70" y="125" width="140" height="64" class="box protocol" />
+  <text x="140.0" y="153" text-anchor="middle" class="label">Human</text>
+  <text x="140.0" y="171" text-anchor="middle" class="small">intent owner</text>
+  <rect x="335" y="125" width="140" height="64" class="box runtime" />
+  <text x="405.0" y="153" text-anchor="middle" class="label">Agent</text>
+  <text x="405.0" y="171" text-anchor="middle" class="small">planner</text>
+  <rect x="615" y="125" width="155" height="64" class="box archive" />
+  <text x="692.5" y="153" text-anchor="middle" class="label">Policy</text>
+  <text x="692.5" y="171" text-anchor="middle" class="small">permissions</text>
+  <rect x="810" y="190" width="155" height="64" class="box archive" />
+  <text x="887.5" y="218" text-anchor="middle" class="label">Archive</text>
+  <text x="887.5" y="236" text-anchor="middle" class="small">audit records</text>
+  <rect x="335" y="410" width="140" height="64" class="box runtime" />
+  <text x="405.0" y="438" text-anchor="middle" class="label">Tool</text>
+  <text x="405.0" y="456" text-anchor="middle" class="small">capability</text>
+  <rect x="690" y="410" width="180" height="64" class="box external" />
+  <text x="780.0" y="438" text-anchor="middle" class="label">External System</text>
+  <text x="780.0" y="456" text-anchor="middle" class="small">API / files</text>
+  <path d="M 210 157 L 335 157" class="edge" />
+  <text x="272.5" y="149.0" text-anchor="middle" class="small">intent</text>
+  <path d="M 475 145 L 615 145" class="edge" />
+  <text x="545.0" y="137.0" text-anchor="middle" class="small">policy check</text>
+  <path d="M 690 189 L 405 410" class="edge" />
+  <text x="547.5" y="291.5" text-anchor="middle" class="small">allowed scope</text>
+  <path d="M 405 189 L 405 410" class="edge" />
+  <text x="405.0" y="291.5" text-anchor="middle" class="small">JEP + HJS</text>
+  <path d="M 475 442 L 690 442" class="edge" />
+  <text x="582.5" y="434.0" text-anchor="middle" class="small">side effect</text>
+  <path d="M 870 458 L 810 240" class="edge" />
+  <text x="840.0" y="341.0" text-anchor="middle" class="small">response evidence</text>
+  <path d="M 475 430 L 810 230" class="edge" />
+  <text x="642.5" y="322.0" text-anchor="middle" class="small">tool evidence</text>
+  <path d="M 405 189 L 810 215" class="edge" />
+  <text x="607.5" y="194.0" text-anchor="middle" class="small">decision trace</text>
+  <path d="M 810 215 L 210 157" class="edge" />
+  <text x="510.0" y="178.0" text-anchor="middle" class="small">audit / replay</text>
+</svg>

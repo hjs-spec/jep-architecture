@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="380" viewBox="0 0 1120 380" role="img" aria-labelledby="title desc">
+  <title id="title">Replay Verification Diagram</title>
+  <desc id="desc">Static SVG preview generated from the repository architecture diagram definitions.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#394150" />
+    </marker>
+    <style>
+      .title { font: 700 22px Arial, sans-serif; fill: #172033; }
+      .box { rx: 12; ry: 12; stroke-width: 1.7; }
+      .protocol { fill: #e8f1ff; stroke: #2f6fed; }
+      .runtime { fill: #edf8f0; stroke: #2c8a4a; }
+      .archive { fill: #fff7e6; stroke: #d99000; }
+      .external { fill: #fff0f0; stroke: #d64545; }
+      .label { font: 700 15px Arial, sans-serif; fill: #172033; }
+      .small { font: 12px Arial, sans-serif; fill: #394150; }
+      .edge { stroke: #394150; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 6 5; }
+    </style>
+  </defs>
+  <text x="560" y="38" text-anchor="middle" class="title">Replay Verification: Archive → Canonicalization → Hash Verification → Lineage Verification → Result</text>
+  <rect x="35" y="115" width="165" height="82" class="box archive" />
+  <text x="117.5" y="143" text-anchor="middle" class="label">Archive</text>
+  <text x="117.5" y="161" text-anchor="middle" class="small">JAC records</text>
+  <path d="M 200 156 L 235 156" class="edge" />
+  <rect x="240" y="115" width="165" height="82" class="box protocol" />
+  <text x="322.5" y="143" text-anchor="middle" class="label">Canonicalization</text>
+  <text x="322.5" y="161" text-anchor="middle" class="small">stable encoding</text>
+  <path d="M 405 156 L 440 156" class="edge" />
+  <rect x="445" y="115" width="165" height="82" class="box protocol" />
+  <text x="527.5" y="143" text-anchor="middle" class="label">Hash Verification</text>
+  <text x="527.5" y="161" text-anchor="middle" class="small">digests + signatures</text>
+  <path d="M 610 156 L 645 156" class="edge" />
+  <rect x="650" y="115" width="165" height="82" class="box protocol" />
+  <text x="732.5" y="143" text-anchor="middle" class="label">Lineage Verification</text>
+  <text x="732.5" y="161" text-anchor="middle" class="small">delegation + policy</text>
+  <path d="M 815 156 L 850 156" class="edge" />
+  <rect x="855" y="115" width="165" height="82" class="box archive" />
+  <text x="937.5" y="143" text-anchor="middle" class="label">Result</text>
+  <text x="937.5" y="161" text-anchor="middle" class="small">verified?</text>
+  <rect x="830" y="250" width="130" height="65" class="box runtime" />
+  <text x="895.0" y="278" text-anchor="middle" class="label">Accept Replay</text>
+  <text x="895.0" y="296" text-anchor="middle" class="small">verified trace</text>
+  <rect x="975" y="250" width="130" height="65" class="box external" />
+  <text x="1040.0" y="278" text-anchor="middle" class="label">Reject Replay</text>
+  <text x="1040.0" y="296" text-anchor="middle" class="small">mismatch report</text>
+  <path d="M 937 197 L 895 250" class="edge" />
+  <text x="916.0" y="215.5" text-anchor="middle" class="small">yes</text>
+  <path d="M 995 197 L 1040 250" class="edge" />
+  <text x="1017.5" y="215.5" text-anchor="middle" class="small">no</text>
+</svg>
