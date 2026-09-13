@@ -1,37 +1,17 @@
-# Replay Verification Diagram
-
-This diagram shows the verification path before a replay result is accepted as trustworthy.
+# Scoped verification result
 
 ```mermaid
-flowchart LR
-    Archive["Archive\nJAC records\nraw evidence pointers"]
-    Canonicalization["Canonicalization\nstable ordering\nnormalized encodings"]
-    HashVerification["Hash Verification\nrecord digests\nsignature checks"]
-    LineageVerification["Lineage Verification\ndelegation chain\npolicy continuity"]
-    Result{"Result\nverified?"}
-    Accepted["Accept Replay\nshow deterministic trace"]
-    Rejected["Reject Replay\nreport mismatch + record id"]
-
-    Archive --> Canonicalization
-    Canonicalization --> HashVerification
-    HashVerification --> LineageVerification
-    LineageVerification --> Result
-    Result -->|yes| Accepted
-    Result -->|no| Rejected
-
-    classDef archive fill:#fff7e6,stroke:#d99000,stroke-width:1.5px,color:#172033;
-    classDef verify fill:#e8f1ff,stroke:#2f6fed,stroke-width:1.5px,color:#172033;
-    classDef pass fill:#edf8f0,stroke:#2c8a4a,stroke-width:1.5px,color:#172033;
-    classDef fail fill:#fff0f0,stroke:#d64545,stroke-width:1.5px,color:#172033;
-    class Archive archive;
-    class Canonicalization,HashVerification,LineageVerification,Result verify;
-    class Accepted pass;
-    class Rejected fail;
+flowchart TB
+    Archive["Archive with explicit format"]
+    Core["Core syntax and signature checks"]
+    Result["Actual Level 1 result and diagnostics"]
+    Extra["Optional higher-scope validators"]
+    Report["Combined report with unresolved checks"]
+    Archive -->|preserve signed members| Core
+    Core -->|report performed checks| Result
+    Result -->|report Core outcome| Report
+    Archive -->|supply extra evidence| Extra
+    Extra -->|report supported scopes| Report
 ```
 
-## Developer notes
-
-- Canonicalization must happen before hashing; otherwise equivalent records can produce different digests.
-- Hash verification answers whether stored content changed.
-- Lineage verification answers whether the delegation chain and policy claims still make sense together.
-- Rejected replays should produce actionable diagnostics: failed stage, expected digest, actual digest, and affected record id.
+Core canonicalization and trusted-key signature verification follow JEP rules. The current reference API returns Level 1; it does not implement the optional higher-scope box. HJS/JAC, identity, authority and completeness claims require additional validators and evidence. Never normalize signed payloads with an unrelated JSON format.
