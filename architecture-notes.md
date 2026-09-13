@@ -1,90 +1,34 @@
-# Architecture Notes
+# Architecture notes
 
-These notes describe how to use the diagrams when implementing the JEP / HJS / JAC runtime stack. They are intentionally practical and avoid product or whitepaper language.
+These implementation notes explain the diagrams. Protocol definitions remain in [JEP-Core-0.6](https://github.com/hjs-spec/jep-v06), [HJS 0.5](https://github.com/hjs-spec/hjs-05) and [JAC](https://github.com/hjs-spec/jac-agent-02).
 
-## Layer responsibilities
+## Responsibilities
 
-### JEP: action envelope
+| Layer | Owns | Does not establish by itself |
+|---|---|---|
+| JEP: Judgment Event Protocol | Atomic signed J/D/T/V statements, Core canonicalization, signatures, event hashes and verification results | Truth, complete logging, identity binding or valid authority |
+| HJS | Archive, privacy, receipt and evidence lifecycle | New JEP verbs, signature rules, Core levels or execution permissions |
+| JAC | Declared dependencies over JEP/HJS, including `ext["https://jac.org/chain"]` with `based_on`, `based_on_type`, `relation` | Core canonicalization or proof of real causality |
+| Application runtime | Tool dispatch, independently configured policy, identity resolution and storage integration | Automatic conformance to all three protocols |
+| SDK/API | Supported event creation and verification interfaces | Authority validation merely because a signature passes |
 
-JEP is the developer-facing contract for accountable work. It should answer:
+## Core objects and application envelopes
 
-- Who requested the action?
-- Which agent or sub-agent is acting?
-- What intent and constraints were delegated?
-- Which tool or runtime operation is being requested?
-- Which archive record should replay or verification use later?
+Preserve signed Core members exactly when forwarding or archiving. The protocol profile is `jep-core-0.6`, while its wire member is `jep: "1"`. Software version numbers are independent.
 
-JEP should not know how a specific SDK stores configuration or how a specific integration calls an external API.
+Application fields such as `record_id`, `sequence`, `event_hash`, `previous_event_hash`, tool digests and external references belong to an explicitly defined local envelope or permitted extension. They are not a universal set of required Core members. Do not append them to an already signed Core object or replace its canonicalization with ordinary sorted JSON.
 
-### HJS: hardened job state
+A Core `D` event is a declaration. Enforcing permissions before a tool side effect requires the application's policy and trust model. A `T` event does not undo an external side effect. A `V` statement must describe the checks actually performed, with its scope preserved; it does not elevate a Level 1 result to full authority verification.
 
-HJS carries execution state that needs integrity guarantees while work is in flight. It should include:
+## Verification and replay
 
-- signed or otherwise integrity-protected state claims;
-- policy decisions that were evaluated before execution;
-- execution constraints such as budget, time, tool scope, and retention rules;
-- references to the parent delegation record when the action was delegated.
+1. Parse strictly and select an explicit format/profile. Historical formats require explicit compatibility paths.
+2. Validate Core syntax, canonicalize according to Core rules and verify the signature under an independently trusted key policy.
+3. Return the actual `profile`, `level`, `mode`, `scopes`, `conformance_class`, diagnostics and event hash.
+4. If required and supported, separately validate archive receipts, declared dependencies, identity binding and application authority. Report missing evidence as unresolved or failed under that validator's contract.
 
-HJS should be validated before tool execution and archived after execution.
+The current reference API performs Level 1 syntax and cryptographic verification. It does not perform full HJS/JAC, identity or authority checks. Archival mode verifies existing evidence; live anti-replay consumption is an explicit different operation. A locally recomputed hash chain lacks a trusted completeness anchor and can be rewritten by its author.
 
-### JAC: accountability canon
+## Runtime integration
 
-JAC defines the canonical representation used by archive and replay code. It should include:
-
-- stable field ordering and encoding rules;
-- digest and signature fields;
-- lineage identifiers;
-- links to input, output, policy, and external evidence;
-- replay verification outcomes.
-
-JAC is the format developers should use when comparing records across runtimes or SDKs.
-
-## Runtime implementation guidance
-
-- Treat JEP middleware as the required entry point for accountable runtime actions.
-- Keep the runtime dispatcher small: validate envelope, check HJS, call tool, capture result, write archive.
-- Store both successful and failed tool executions.
-- Record policy decisions alongside the action they authorized.
-- Avoid storing raw secrets in archives; store redacted values, references, or sealed evidence blobs.
-- Make replay read-only by default. Re-execution should be a separate explicit mode.
-
-## Lineage fields developers should expect
-
-A minimal lineage record should include:
-
-| Field | Why it matters |
-| --- | --- |
-| `record_id` | Stable local id for the archived action. |
-| `parent_record_id` | Connects agent, sub-agent, and tool delegations. |
-| `actor_id` | Names the human, agent, sub-agent, or service that acted. |
-| `delegated_by` | Names the upstream actor that granted authority. |
-| `intent` | Explains why the action was taken. |
-| `constraints` | Captures budget, scope, policy, and time limits. |
-| `tool_id` | Identifies the tool or capability invoked. |
-| `input_digest` | Detects input changes without requiring every consumer to load raw input. |
-| `output_digest` | Detects output changes and supports replay comparison. |
-| `external_reference` | Correlates the record with an outside system when one exists. |
-
-## Verification flow
-
-Replay verification should run in this order:
-
-1. Load the archive record and required evidence.
-2. Canonicalize the record using JAC rules.
-3. Verify hashes and signatures.
-4. Verify lineage from the current record back to the root human or organization authority.
-5. Return a verified trace or a structured failure.
-
-This order matters because lineage verification is only meaningful after the record content has passed canonical hash checks.
-
-## Development checklist
-
-Use this checklist when adding a new runtime feature, SDK method, or integration:
-
-- Does the action enter through JEP middleware?
-- Is HJS validated before any external side effect?
-- Is every delegation hop represented in lineage metadata?
-- Are inputs, outputs, policy decisions, and external ids archived?
-- Can replay verify the record without calling the live external system?
-- Are trust boundaries explicit in code, configuration, and logs?
-- Can failures be archived and diagnosed with record ids?
+Capture successful and failed operations according to the application's recording policy, minimize sensitive data, and preserve links to independently available evidence. Recording may fail after a tool side effect, so middleware alone does not guarantee complete or atomic logging. Replay should be read-only; re-executing tools is a separate explicit action. Keep policy decisions, signing-key trust, execution permissions and retention rules visible as distinct responsibilities.

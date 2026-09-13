@@ -2,11 +2,13 @@
 
 Developer-oriented architecture notes and diagrams for the JEP / HJS / JAC accountability runtime stack.
 
-This repository intentionally uses only Markdown and Mermaid so the architecture can be read in code review, rendered by GitHub, and copied into implementation docs without a documentation framework.
+This repository uses Markdown, Mermaid and a small standard-library SVG preview generator so the architecture can be read in code review, rendered by GitHub, and copied into implementation docs without a documentation framework.
 
 ## What this stack describes
 
-JEP defines how an agent action is packaged for accountability. HJS carries the signed/hardened job state that JEP middleware exchanges. JAC provides the canonical archive and replay contract. Runtime components execute tools through those layers, while SDKs and integrations make the same accountability path available to applications.
+JEP means **Judgment Event Protocol** and defines signed atomic J/D/T/V events. HJS covers archives, privacy, receipts and evidence lifecycle. JAC describes declared dependency chains over JEP/HJS. Runtime policy and identity binding are separate concerns; HJS and JAC are not mandatory sequential authorization gates.
+
+These are explanatory diagrams, not new normative schemas. The current reference API reports Core Level 1 syntax and cryptographic verification. Higher-level dependency, identity and authority conclusions require their own evidence and validators. See [JEP Core](https://github.com/hjs-spec/jep-v06), [HJS](https://github.com/hjs-spec/hjs-05) and [JAC](https://github.com/hjs-spec/jac-agent-02).
 
 ## Diagram index
 
@@ -15,7 +17,7 @@ JEP defines how an agent action is packaged for accountability. HJS carries the 
 | Protocol Stack | Shows how JEP, HJS, JAC, runtime, SDKs, and integrations depend on each other. | [diagrams/protocol-stack.md](diagrams/protocol-stack.md) | [diagrams/protocol-stack.svg](diagrams/protocol-stack.svg) |
 | Execution Path | Shows the path a runtime action takes from agent request to replayable archive. | [diagrams/execution-path.md](diagrams/execution-path.md) | [diagrams/execution-path.svg](diagrams/execution-path.svg) |
 | Delegation Lineage | Shows how human intent is delegated through agents and tools to external systems. | [diagrams/delegation-lineage.md](diagrams/delegation-lineage.md) | [diagrams/delegation-lineage.svg](diagrams/delegation-lineage.svg) |
-| Replay Verification | Shows how archived records are verified before replay output is trusted. | [diagrams/replay-verification.md](diagrams/replay-verification.md) | [diagrams/replay-verification.svg](diagrams/replay-verification.svg) |
+| Replay Verification | Shows verification results and the limits of the checks actually performed. | [diagrams/replay-verification.md](diagrams/replay-verification.md) | [diagrams/replay-verification.svg](diagrams/replay-verification.svg) |
 | Trust Boundary | Shows which principals own decisions, execution, policy, tool contracts, and outside effects. | [diagrams/trust-boundary.md](diagrams/trust-boundary.md) | [diagrams/trust-boundary.svg](diagrams/trust-boundary.svg) |
 
 ## How to read the diagrams
