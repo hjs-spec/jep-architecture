@@ -1,3 +1,7 @@
+> **Maintenance moved to JEP Core — 2026-09-26.**
+>
+> Architecture documentation, diagrams and their generator are now maintained at [jep-core/docs/architecture](https://github.com/hjs-spec/jep-core/tree/main/docs/architecture). Submit future changes to jep-core. This repository preserves its files and history for existing links.
+
 # JEP Architecture
 
 Developer-oriented architecture notes and diagrams for the JEP / HJS / JAC accountability runtime stack.
