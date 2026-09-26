@@ -36,8 +36,8 @@
   <text x="180.0" y="258" text-anchor="middle" class="label">Core syntax and signature</text>
   <text x="180.0" y="276" text-anchor="middle" class="small">checks</text>
   <rect x="45" y="385" width="270" height="78" class="box protocol" />
-  <text x="180.0" y="413" text-anchor="middle" class="label">Actual Level 1 result and</text>
-  <text x="180.0" y="431" text-anchor="middle" class="small">diagnostics</text>
+  <text x="180.0" y="413" text-anchor="middle" class="label">Core 0.7 status +</text>
+  <text x="180.0" y="431" text-anchor="middle" class="small">independent checks</text>
   <rect x="725" y="230" width="270" height="78" class="box protocol" />
   <text x="860.0" y="258" text-anchor="middle" class="label">Optional higher-scope</text>
   <text x="860.0" y="276" text-anchor="middle" class="small">validators</text>
