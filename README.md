@@ -8,7 +8,7 @@ This repository uses Markdown, Mermaid and a small standard-library SVG preview 
 
 JEP means **Judgment Event Protocol** and defines signed atomic J/D/T/V events. HJS covers archives, privacy, receipts and evidence lifecycle. JAC describes declared dependency chains over JEP/HJS. Runtime policy and identity binding are separate concerns; HJS and JAC are not mandatory sequential authorization gates.
 
-These are explanatory diagrams, not new normative schemas. The current reference API reports Core Level 1 syntax and cryptographic verification. Higher-level dependency, identity and authority conclusions require their own evidence and validators. See [JEP Core](https://github.com/hjs-spec/jep-v06), [HJS](https://github.com/hjs-spec/hjs-05) and [JAC](https://github.com/hjs-spec/jac-agent-02).
+These are explanatory diagrams, not new normative schemas. The current reference API reports JEP Core 0.7 validation as independent checks and an overall `valid / invalid / indeterminate` status. Trust-profile, chain, identity-binding, authority, and policy conclusions require their own evidence and checks. See [JEP Core](https://github.com/hjs-spec/jep-core), [HJS](https://github.com/hjs-spec/hjs-05) and [JAC](https://github.com/hjs-spec/jac-agent-02).
 
 ## Diagram index
 
