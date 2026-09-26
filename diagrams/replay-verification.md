@@ -4,7 +4,7 @@
 flowchart TB
     Archive["Archive with explicit format"]
     Core["Core syntax and signature checks"]
-    Result["Actual Level 1 result and diagnostics"]
+    Result["Core 0.7 status + independent checks"]
     Extra["Optional higher-scope validators"]
     Report["Combined report with unresolved checks"]
     Archive -->|preserve signed members| Core
@@ -14,4 +14,4 @@ flowchart TB
     Extra -->|report supported scopes| Report
 ```
 
-Core canonicalization and trusted-key signature verification follow JEP rules. The current reference API returns Level 1; it does not implement the optional higher-scope box. HJS/JAC, identity, authority and completeness claims require additional validators and evidence. Never normalize signed payloads with an unrelated JSON format.
+Core canonicalization and signature verification follow JEP rules. The current reference API reports only checks it actually performs; trust-profile, chain, policy, HJS/JAC, authority, and completeness claims require their corresponding evidence and validators. Never normalize signed payloads with an unrelated JSON format.
